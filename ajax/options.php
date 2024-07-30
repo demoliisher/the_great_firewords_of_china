@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This function executed the options saving
+ * 此函数执行设置项保存
  */
 add_action( 'wp_ajax_scws_save_options', 'scws_save_options' );
 function scws_save_options() {
@@ -65,7 +65,7 @@ function scws_save_options() {
 
 
 /*
- * This function executed the activation saving
+ * 此函数执行激活保存
  */
 add_action( 'wp_ajax_scws_save_activation', 'scws_save_activation' );
 function scws_save_activation() {

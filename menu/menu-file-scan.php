@@ -1,17 +1,17 @@
 <?php
 /*
- * Output the File Scan content
+ * 输出文件扫描内容
  */
 function scws_menu_file_scan() {
 
     if (scws_menu_check_activation() === false) return;
     ?>
 
-    <h1><?php echo get_option('scws_activation_company', '') . "'s "; ?><?php _e('File Scan', 'sensitive-chinese'); ?></h1>
+    <h1><?php echo get_option('scws_activation_company', '') . "'s "; ?><?php _e('文件扫描', 'sensitive-chinese'); ?></h1>
 
-    <p><?php _e('GFW will scan all the following filetypes: txt, php, js, doc, html & xml.', 'sensitive-chinese'); ?></p>
+    <p><?php _e('敏感瓷插件将扫描以下文件类型：txt, php, js, doc, html & xml.', 'sensitive-chinese'); ?></p>
         
-         <p style="margin-right:20px"><?php _e('If you experience timeout issues when trying to scan a large directory, use the "Number of Searches" field to break that search into smaller units. For example, if you entered "2" in that field, GFW would break the scan into two searches. Feel free to use "1" for smaller directories.'); ?></p>
+         <p style="margin-right:20px"><?php _e('如果你在扫描大文件夹时遇到了超时问题，尝试使用“分卷搜索”功能将搜索分为小单元。例如，如果你在框内输入“2”，插件会将搜索分为两次进行。对于小型目录，用“1”也随便。'); ?></p>
           
     <form id="scws_run_file_scan">
         <input type="hidden" name="action" value="scws_file_scan" />
@@ -41,8 +41,8 @@ function scws_menu_file_scan() {
             echo '</select>';
         }
         ?>
-        <input type="number" value="" style="width:300px" min="1" placeholder="Number of Searches" name="totalpieces" required/>
-        <button><?php _e('Run File Scan', 'sensitive-chinese'); ?></button>
+        <input type="number" value="" style="width:300px" min="1" placeholder="分卷搜索" name="totalpieces" required/>
+        <button><?php _e('运行文件扫描', 'sensitive-chinese'); ?></button>
     </form>
 
     <div id="result"></div>
@@ -78,7 +78,7 @@ function scws_menu_file_scan() {
 
                 if ( result == '0000') {
 
-                        $('#result').append( '<div>Finished search early. It was not necessary to use the number of individual searches you requested.</div>' );
+                        $('#result').append( '<div>搜索已提前完成，没必要用分卷搜索功能。</div>' );
                         $('#result').removeClass('loading');
                         select.attr('disabled', false);
                         field.attr('disabled', false);
@@ -103,7 +103,7 @@ function scws_menu_file_scan() {
                 }
 
             }).fail(function(){
-                $('#result').append( '<div>The server timed out. Try entering a larger number in the "Number of Searches" field.</div>' );
+                $('#result').append( '<div>服务器超时，请尝试在“分卷搜索”框输入一个更大的数字。</div>' );
                 $('#result').removeClass('loading');
                 select.attr('disabled', false);
                 field.attr('disabled', false);

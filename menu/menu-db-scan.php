@@ -1,6 +1,6 @@
 <?php
 /*
- * Output the DB Scan content
+ * 输出数据库扫描内容
  */
 function scws_menu_db_scan() {
 
@@ -8,7 +8,7 @@ function scws_menu_db_scan() {
     
     ?>
     
-    <h1><?php echo get_option('scws_activation_company', '') . "'s "; ?><?php _e('Database Scan', 'sensitive-chinese'); ?></h1>
+    <h1><?php echo get_option('scws_activation_company', '') . "'s "; ?><?php _e('数据库扫描', 'sensitive-chinese'); ?></h1>
 
     <form id="scws_run_db_scan">
         <input type="hidden" name="action" value="scws_db_scan" />
@@ -22,14 +22,14 @@ function scws_menu_db_scan() {
 
         if (count($rows) > 0) {
             echo '<select>';
-            echo '<option value="0">All tables</option>';
+            echo '<option value="0">所有表</option>';
             foreach ($rows as $key => $value) {
                 echo '<option value="'. $key .'">'. $key .'</option>';
             }
             echo '</select>';
         }
         ?>
-        <button><?php _e('Run DB Scan', 'sensitive-chinese'); ?></button>
+        <button><?php _e('运行数据库扫描', 'sensitive-chinese'); ?></button>
     </form>
 
     <div id="result"></div>
@@ -55,7 +55,7 @@ function scws_menu_db_scan() {
                 addit.val( select.val() );
 
             if ($('#scws_run_db_scan input[name=step]').val() > total) {
-                $('#result').append('<br />Finished!');
+                $('#result').append('<br />完成！');
                 $('#result').removeClass('loading');
                 select.attr('disabled', false);
             }
@@ -71,7 +71,7 @@ function scws_menu_db_scan() {
                 if ( results[0] == '0' ) {
 
                         $('#result').append( results[1] );
-                        $('#result').append('<br />Finished!');
+                        $('#result').append('<br />完成！');
                         $('#result').removeClass('loading');
                         select.attr('disabled', false);
                 
@@ -119,12 +119,12 @@ function scws_menu_db_scan() {
                 table = form.attr('data-table');
             
             if (replace == '') {
-                alert('Please insert a word for replace.');
+                alert('请插入一个用于替换的词。');
                 return;
             }
 
             if (table == '' || column == '' || key == '' || word == '') {
-                alert('There was a problem. Reload the page and try again.');
+                alert('出了点问题，请刷新页面后重试。');
                 return;
             }
 
@@ -132,7 +132,7 @@ function scws_menu_db_scan() {
             
             //Send the form data
             var data = 'action=scws_db_replace_ajax&replace=' + replace + '&word='+ word +'&key='+ key +'&column='+ column + '&table='+ table + '&keyname='+ keyname;
-            if (confirm('Are you sure you want replace "'+ word +'" with "'+ replace +'" on table "'+ table +'"? This action cannot be reverted. Always do a backup from your DB before doing this.')) {
+            if (confirm('您确定要在表“' + table + '”用“' + replace + '”替换“'+ word +'”吗？此操作不可逆转，操作前注意按需备份您的数据库。')) {
                 $.post( ajaxurl, data, function( result ) {
 
                         switch (result) {
@@ -141,7 +141,7 @@ function scws_menu_db_scan() {
                             case '2' :
                             case '3' :
                             case '4' :
-                                alert('There was a problem. Reload the page and try again.');
+                                alert('出了点问题，请刷新页面后重试。');
                                 break;
                             default:
                                 form.html(result);

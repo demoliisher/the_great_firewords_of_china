@@ -1,8 +1,7 @@
 <?php
 /********************************
  *
- * This file include functions related
- * with the active check functionality
+ * 此文件包含关于主动检查功能的函数
  *
  ********************************/
 
@@ -30,7 +29,7 @@ function scws_active_scan_do_actions( $founds ) {
         //where the word was found
         switch ( $found[2] ) {
             case $wpdb->prefix . 'posts':
-                $report[] = 'Word <i>'. $found[0] .'</i> detected at <i>'. $found[3] .'</i> of post <a href="'. admin_url( 'post.php?post='. $found[5] .'&action=edit' ) .'">#'. $found[5] .'</a>. <span>'. $found[1] .'</span>';
+                $report[] = '敏感词 <i>'. $found[0] .'</i> 发现于 <i>'. $found[3] .'</i> of post <a href="'. admin_url( 'post.php?post='. $found[5] .'&action=edit' ) .'">#'. $found[5] .'</a>. <span>'. $found[1] .'</span>';
                 $url = '<i>'. ucwords($found[3]) .'</i> of post <a href="'. admin_url( 'post.php?post='. $found[5] .'&action=edit' ) .'">#'. $found[5] .'</a>';
             break;
             case $wpdb->prefix . 'postmeta':
@@ -125,7 +124,7 @@ function scws_active_scan_do_email_submission( $report ) {
 
                 //Show the additional words
                 if ($total > 5) {
-                    $table .= '<tr align="left" style="background: #FFFFFF; border: 0; border-collapse: collapse; border-spacing: 0" bgcolor="#FFFFFF"><td><table cellspacing="0" cellpadding="0" border="0" style="border: 0; border-collapse: collapse; border-spacing: 0; min-width: 650px"><tbody><tr style="border: 0; border-collapse: collapse; border-spacing: 0"><td width="20" height="30" bgcolor="#FFFFFF" align="left" valign="top" style="background: #FFFFFF; font-size: 1px; height: 30px; line-height: 1px; width: 20px"> </td><td width="600" align="left" valign="top" height="30" style="background: #FFFFFF; height: 30px; width: 600px" bgcolor="#FFFFFF"><!-- content start --><p style="color: #111111 !important; font-family: Open Sans; font-size: 20px; font-style: normal; font-weight: 400; line-height: 24px;  margin-top:0; padding-top:0; margin-right:0; padding-right:0; margin-bottom:0; padding-bottom:0; margin-left:0; padding-left:0;  text-shadow: none">'. ($total - 5) .' more words found. <a href="'. admin_url( 'admin.php?page=scws_active_scan' ) .'">View the full report on your site.</a></p></div><!-- content end --></td><td width="19" height="30" bgcolor="#FFFFFF" align="left" valign="top" style="background: #FFFFFF; font-size: 1px; height: 30px; line-height: 1px; width: 19px"> </td></tr></tbody></table></td></tr>';
+                    $table .= '<tr align="left" style="background: #FFFFFF; border: 0; border-collapse: collapse; border-spacing: 0" bgcolor="#FFFFFF"><td><table cellspacing="0" cellpadding="0" border="0" style="border: 0; border-collapse: collapse; border-spacing: 0; min-width: 650px"><tbody><tr style="border: 0; border-collapse: collapse; border-spacing: 0"><td width="20" height="30" bgcolor="#FFFFFF" align="left" valign="top" style="background: #FFFFFF; font-size: 1px; height: 30px; line-height: 1px; width: 20px"> </td><td width="600" align="left" valign="top" height="30" style="background: #FFFFFF; height: 30px; width: 600px" bgcolor="#FFFFFF"><!-- content start --><p style="color: #111111 !important; font-family: Open Sans; font-size: 20px; font-style: normal; font-weight: 400; line-height: 24px;  margin-top:0; padding-top:0; margin-right:0; padding-right:0; margin-bottom:0; padding-bottom:0; margin-left:0; padding-left:0;  text-shadow: none">'. ($total - 5) .' 个更多的敏感词被查出。<a href="'. admin_url( 'admin.php?page=scws_active_scan' ) .'">在您的站点中查看完整报告。</a></p></div><!-- content end --></td><td width="19" height="30" bgcolor="#FFFFFF" align="left" valign="top" style="background: #FFFFFF; font-size: 1px; height: 30px; line-height: 1px; width: 19px"> </td></tr></tbody></table></td></tr>';
                 }
                 
                 //Update main template
@@ -136,7 +135,7 @@ function scws_active_scan_do_email_submission( $report ) {
                 );
 
                 //Subject
-                $subject = 'Chinese Sensitive Content Report';
+                $subject = '敏感瓷报告';
                 $headers = array('Content-Type: text/html; charset=UTF-8');
                 wp_mail( $to, $subject, $body, $headers );
 

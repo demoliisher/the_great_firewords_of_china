@@ -1,38 +1,46 @@
-# The Great Firewords of China (WordPress Plugin)
+# 敏感瓷（WordPress 插件）
 
-Scan your website for words and phrases that the Chinese government considers sensitive. Edit or remove content the plugin identifies, and decrease the chance your site will be blocked by the Great Firewall of China. If your site’s already being blocked, this plugin can help you discover possible reasons why.
+> **译者注**
+>
+> 本人无意间在 [WordPress 翻译平台](https://translate.wordpress.org)瞟见这个项目，安装量可怜，且并未提供 [i18n](https://en.wikipedia.org/wiki/Internationalization_and_localization)，无法在平台上翻译。看在插件功能是大部分国人站长刚需的分上，我在测试环境安装了它并顺藤摸瓜找到了其 GitHub 仓库，开始了不太正规的翻译之路：直接修改文件。
+>
+> 在使用体验上，值得肯定的是用户交互界面，~~但是毕竟年久失修，它已经无法正常工作于较新版本的 WordPress~~，所以我也是草草译完~~然后归档吃灰~~（后续有更新可能仅限更改词库和修改译文）。
+>
+> **温馨提示**：请不要在国内的云产品上尝试安装此插件，因为用于判断的敏感词库文件是以纯文本文件（格式为 csv）包含于插件内的，敏感度无限逼近百分之百，很多主机商也会主动识别您的文件，小心直接被喝茶。
 
-## FAQ
-The Great Firewords of China WordPress plugin works in three ways:
+扫描您的网站中被朝廷视为禁忌的内容。编辑或移除插件识别出的内容，降低您的网站被流放于长城之外的几率。若您的站点已被墙，本插件可以协助您排查。
 
-1. It scans database content.
-2. It scans theme and plugin content.
-3. It actively monitors new pages, posts, and comments and alerts you when any sensitive words are added to your site.
+## 常见问题
+敏感瓷插件有三大功能：
 
-Please use your best judgement when editing any content the GFW plugin identifies as sensitive. The plugin relies on [@jasonqng](https://github.com/jasonqng)'s [list of sensitive Chinese keywords](https://github.com/jasonqng/chinese-keywords), which contains several generic terms such as “it,” “admin,” and “gov.” Your site won’t necessarily run afoul of the Chinese authorities just because our plugin identifies a sensitive keyword.
+1. 扫描数据库内容；
+2. 扫描主题和插件内容；
+3. 主动监控新页面、新帖子和新评论，并在出现敏感词时提醒您。
 
-## Case Study
+在编辑本插件识别为敏感的任何内容时，请谨慎判断。本插件数据依赖由 [@jasonqng](https://github.com/jasonqng) 维护的的 [朝廷禁忌词](https://github.com/jasonqng/chinese-keywords)，它包含很多通用术语，例如 “它”、“管理”和“政府”。您的网站不一定会因为本插件识别出敏感词而触犯天条。
 
-To learn how we used this plugin to help a global business intelligence company launch its marketing site on the Chinese mainland, [click here](https://studiohyperset.com/how-do-i-launch-a-chinese-website/?utm_source=GitHub&utm_medium=GFW-Repo).
+## 案例分析
 
-## Installation Instructions
-1. Install and activate the plugin as you would any WordPress plugin. (If you’re unfamiliar with installing WordPress plugins, please read [this page](https://codex.wordpress.org/Managing_Plugins) from the Codex).
+了解我们如何使用此插件帮助一个全球商业智能公司在华夏大地推出其商店网站，[点这里](https://studiohyperset.com/how-do-i-launch-a-chinese-website/?utm_source=GitHub&utm_medium=GFW-Repo)。
 
-2. You’ll see a new top-level admin menu titled “GFW.” Visit GFW > Overview to learn how the plugin works and to scan your site.
+## 安装指示
+1. 像安装其它插件一样安装并启用本插件。（如果您不熟悉安装 WordPress 插件，请阅读[官方文档](https://codex.wordpress.org/Managing_Plugins)。
 
-## Changelog
+2. 您将看到在仪表盘顶级菜单中看到『敏感瓷』一项。访问『敏感瓷』>『概览』了解插件功能并开始扫描您的站点。
+## 更新日志
 - 1.2 (4/3/20)
 
-  WP 5.4 updates. New form handlers.
+  WordPress 5.4 更新。新表单处理器。
 
 - 1.1 (11/22/17)
 
-  WP 4.9 includes a new file editor, which allows users to edit any file at any directory level. This release of the GFW plugin takes advantage of this new feature. Users can now link directly from the file scan screen to theme and plugin files that contain banned keywords. We hope this makes editing these files easier.
+  WordPress 4.9 包含了一新的文件编辑器，允许用户任意级别目录的任意文件。此次发行的『敏感瓷』插件利用了这个新特性。用户现在可以直接从文件扫描页面定位到包含违禁词的主题和插件文件。我们希望这能使编辑文件更轻松。
 
 - 1.0 (8/29/17)
   
-  Initial release.
+  首次发行。
 
-## Developer Notes
-- Files are encoded with [GB2312](https://en.wikipedia.org/wiki/GB_2312), but some characters will only work with [GB18030](https://en.wikipedia.org/wiki/GB_18030) encoding.
-- Some words include regex elements. Thes words must be [escaped](https://en.wikipedia.org/wiki/Escape_character). Regex phrases should be inserted into their specific files.
+## 开发者提醒
+> 如果您希望手动扩充词库，请务必阅读以下说明。
+- 词库文件编码为 [GB2312](https://en.wikipedia.org/wiki/GB_2312)，但一些字符只会在 [GB18030](https://en.wikipedia.org/wiki/GB_18030) 编码下显示。
+- 一些词包含正则表达式元素。这些词必须为 [转义字符](https://en.wikipedia.org/wiki/Escape_character)。正则表达式短语应插入到其特定文件中。

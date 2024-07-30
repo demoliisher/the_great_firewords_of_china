@@ -1,8 +1,7 @@
 <?php
 /********************************
  *
- * This file include functions that
- * will change the file editor behavior
+ * 此文件包含会改变文件编辑器行为的函数
  *
  ********************************/
 

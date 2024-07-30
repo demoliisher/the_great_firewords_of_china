@@ -2,13 +2,13 @@
 /*
 **************************************************************************
 
-Plugin Name:  The Great Firewords of China
+Plugin Name:  误碰敏感瓷
 Plugin URI:   https://studiohyperset.com/how-do-i-launch-a-chinese-website/
-Description:  Scan your website for words and phrases that the Chinese government considers sensitive. Edit or remove content the plugin identifies, and decrease the chance your site will be blocked by the Great Firewall of China. If your site's already being blocked, this plugin can help you discover possible reasons why.
+Description:  扫描您的网站内被朝廷视为禁忌的词。编辑或移除插件识别出的内容，降低您的站点被长城拦于关外的几率。若您的站点已被流放，本插件可协您清查可能之因。
 Version:      1.2
 Author:       Studio Hyperset
 Author URI:   https://studiohyperset.com
-Text Domain:  sensitive-chinese
+Text Domain:  敏感瓷, 敏感词, sensitive, chinese
 
 **************************************************************************/
 

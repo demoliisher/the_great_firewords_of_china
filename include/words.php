@@ -1,8 +1,7 @@
 <?php
 /********************************
  *
- * This file include help functions to work
- * with word search and replace
+ * 此文件包含协助函数工作的文字搜索和替换功能
  *
  ********************************/
 

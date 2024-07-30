@@ -1,29 +1,29 @@
 <?php
 
 /*
- * This function executed the search in the DB
+ * 此函数执行数据库搜索
  */
 add_action( 'wp_ajax_scws_file_scan', 'scws_file_scan' );
 function scws_file_scan() {
 
     //Verify Nonce
     if (! wp_verify_nonce( $_POST['scws_file_scan_nonce'], 'scws_file_scan_nonce' ) )
-        scws_ajax_die( '', __('Error #0! Please try again later', 'sensitive-chinese'), 'div', '' );
+        scws_ajax_die( '', __('错误 #0！请稍后重试', 'sensitive-chinese'), 'div', '' );
         
     if ( empty( $_POST['file_look'] ) )
-        scws_ajax_die( '', __('Error #1! Please try again later', 'sensitive-chinese'), 'div', '' );
+        scws_ajax_die( '', __('错误 #1！请稍后重试', 'sensitive-chinese'), 'div', '' );
 
     if ( empty( $_POST['nextpiece'] ) )
-        scws_ajax_die( '', __('Error #2! Please try again later', 'sensitive-chinese'), 'div', '' );
+        scws_ajax_die( '', __('错误 #2！请稍后重试', 'sensitive-chinese'), 'div', '' );
         
     if ( empty( $_POST['totalpieces'] ) )
-        scws_ajax_die( '', __('Error #3! Please try again later', 'sensitive-chinese'), 'div', '' );
+        scws_ajax_die( '', __('错误 #3！请稍后重试', 'sensitive-chinese'), 'div', '' );
     
     $pieces = intval($_POST['totalpieces']);
     $next = intval($_POST['nextpiece']);
 
     if ( $pieces == 0 || $next == 0 )
-        scws_ajax_die( '', __('Error #4! Please try again later', 'sensitive-chinese'), 'div', '' );
+        scws_ajax_die( '', __('错误 #4！请稍后重试', 'sensitive-chinese'), 'div', '' );
 
     if ( $pieces < $next ) {
         echo '0000';
@@ -38,7 +38,7 @@ function scws_file_scan() {
     unset($file);
 
     if ($type != 'T' && $type != 'P')
-        scws_ajax_die( '', __('Error #6! Please try again later', 'sensitive-chinese'), 'div', '' );
+        scws_ajax_die( '', __('错误 #6！请稍后重试', 'sensitive-chinese'), 'div', '' );
         
     //Get the folder path to look for
     if ($type == 'T')
@@ -185,16 +185,16 @@ function scws_file_scan() {
                         //Check if editable. 
                         //For Theme should be level 0 for CSS or level 0 or 1
                         //For Plugin should be level 0 or 1
-                        $columnResult .= '<div class="text-change"><a href="'. $link . urlencode($edit) .'" target="_blank">'. __('Edit this file using the WP file editor.', 'sensitive-chinese') . '</a></div>';
+                        $columnResult .= '<div class="text-change"><a href="'. $link . urlencode($edit) .'" target="_blank">'. __('通过 WordPress 文件编辑器编辑此文件。', 'sensitive-chinese') . '</a></div>';
 
                 $columnResult .= '</div>';
             $columnResult .= '</li>';
         }
     } else {
         if ($type == 'T')
-            scws_ajax_die( '', __('No sensitive words found in this theme.', 'sensitive-chinese'), 'div', '' );
+            scws_ajax_die( '', __('主题里没有发现敏感词。', 'sensitive-chinese'), 'div', '' );
         else
-            scws_ajax_die( '', __('No sensitive words found in this plugin.', 'sensitive-chinese'), 'div', '' );
+            scws_ajax_die( '', __('插件里没有发现敏感词。', 'sensitive-chinese'), 'div', '' );
         
     }
 

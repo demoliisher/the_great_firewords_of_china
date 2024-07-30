@@ -1,30 +1,30 @@
 <?php
 
 /*
- * This function executed the search in the DB
+ * 此函数执行数据库搜索
  */
 add_action( 'wp_ajax_scws_db_scan', 'scws_db_scan_ajax' );
 function scws_db_scan_ajax() {
 
      //Verify Step
      if ( empty( $_POST['step'] ) )
-          scws_ajax_die( 0, __('Error! Please try again later', 'sensitive-chinese'), 'div' );
+          scws_ajax_die( 0, __('错误！请稍后重试', 'sensitive-chinese'), 'div' );
 
      $step = intval( $_POST['step'] );
 
      //Verify Nonce
      if (! wp_verify_nonce( $_POST['scws_db_scan_nonce'], 'scws_db_scan_nonce_'. $step ) )
-          scws_ajax_die( 0, __('Error! Please try again later', 'sensitive-chinese'), 'div' );
+          scws_ajax_die( 0, __('错误！请稍后重试', 'sensitive-chinese'), 'div' );
 
      //Verify Step
      if ( empty($_POST['step']) )
-          scws_ajax_die( 0, __('Error! Please try again later', 'sensitive-chinese'), 'div' );
+          scws_ajax_die( 0, __('错误！请稍后重试', 'sensitive-chinese'), 'div' );
 
      global $wpdb;
      $return = array();
 
      if ( empty( $_POST['additional'] ) )
-          scws_ajax_die( 0, __('Error! Please try again later', 'sensitive-chinese'), 'div' );
+          scws_ajax_die( 0, __('错误！请稍后重试', 'sensitive-chinese'), 'div' );
 
      //Already Know Cases. Saving SQL Resources
      $table = $_POST['additional'];
@@ -32,7 +32,7 @@ function scws_db_scan_ajax() {
      $key = scws_db_know_tables($table, true);
 
      if (count($columns) == 0)
-          scws_ajax_die( 0, __('Error! We could not read data from your DB.', 'sensitive-chinese'), 'div' );
+          scws_ajax_die( 0, __('错误！无法从数据库中读取数据。', 'sensitive-chinese'), 'div' );
 
      //Get all expected words
      $words = scws_get_words( true );
@@ -110,14 +110,14 @@ function scws_db_scan_ajax() {
                     $columnResult .= '<li>'. $res[2] .' <strong>('. $res[3] .')</strong> 
                          <div class="edit" data-table="'. $res[0] .'" data-column="'. $res[1] .'" data-word="'. $res[2] .'" data-key="'. $res[5] .'" data-keyname="'. $key .'">
                               <div class="text-block"><i>ID: '. $res[5] .'</i><i>'. $res[1] .'</i>'. $res[4] .'</div>
-                              <div class="text-change">Change "'. $res[2] .'" to <input type="text"></input><button>'. __('Change', 'sensitive-chinese') .'</button></div>
+                              <div class="text-change">将 "'. $res[2] .'" 更改为 <input type="text"></input><button>'. __('更改', 'sensitive-chinese') .'</button></div>
                          </div>
                     </li>';
                } else {
                     $columnResult .= '<li>'. $res[2] .' <strong>('. $res[3] .')</strong> 
                          <div class="edit" data-table="'. $res[0] .'" data-column="'. $res[1] .'" data-word="'. $res[2] .'" data-key="'. $res[5] .'">
                               <div class="text-block"><i>'. $res[1] .'</i>'. $res[4] .'</div>
-                              <div class="text-change"><i>'. __('The plugin cannot edit this table. Please edit it using the WP editor.', 'sensitive-chinese') . '</i></div>
+                              <div class="text-change"><i>'. __('本插件无法编辑此表，请通过 WordPress 编辑器编辑。', 'sensitive-chinese') . '</i></div>
                          </div>
                     </li>';
                }
@@ -130,12 +130,12 @@ function scws_db_scan_ajax() {
      $return[] = 0;
      $return[] = wp_create_nonce( 'scws_db_scan_nonce_'.$step );
      if ($textColumns == 0)
-          $return[] = scws_wrap_element( __('No text columns exist in this table:', 'sensitive-chinese') . ' '. $table, 'div');
+          $return[] = scws_wrap_element( __('文本列不存在于此表中：', 'sensitive-chinese') . ' '. $table, 'div');
      else {
           if ($foundTotal == 0)
-               $return[] = scws_wrap_element( __('No sensitive words found in this table:', 'sensitive-chinese') . ' '. $table, 'div');
+               $return[] = scws_wrap_element( __('未从此表中发现敏感词：', 'sensitive-chinese') . ' '. $table, 'div');
           else
-               $return[] = scws_wrap_element( $foundTotal . ' ' . __('sensitive words found in this table:', 'sensitive-chinese') . ' '. $table . '<br />' . $columnResult, 'div' );
+               $return[] = scws_wrap_element( $foundTotal . ' ' . __('敏感词发现于此表:', 'sensitive-chinese') . ' '. $table . '<br />' . $columnResult, 'div' );
      }
 
      scws_ajax_die($step, $return, 'div');
@@ -188,7 +188,7 @@ function scws_db_replace_ajax() {
      if ($search === false)
           die('6');
 
-     die( '<strong>'. $_POST['word'] .'</strong> replaced with <strong>'. $_POST['replace'] .'</strong>');
+     die( '<strong>'. $_POST['word'] .'</strong> 替换为 <strong>'. $_POST['replace'] .'</strong>');
 
 }
 
